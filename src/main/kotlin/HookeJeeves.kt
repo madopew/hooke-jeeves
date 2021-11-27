@@ -7,7 +7,7 @@
  * @param reduceCoefficient coefficient of reducing step size
  * @param eps maximum value of the step
  * @param onStep callback called on each step, which takes current coordinates, function value and whether the step was successful
- * @return
+ * @return a pair of final coordinates and function value
  */
 fun hookeJeeves(
     coords: List<Double>,
