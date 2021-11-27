@@ -1,18 +1,21 @@
-fun main(args: Array<String>) {
+const val FORMAT_STRING = "\"%d\",\"%.3f\",\"%.3f\",\"%.3f\",\"%.3f\",\"%.3f\",\"%.3f\",\"%s\""
+
+fun main() {
     val initial = listOf(1.0, 1.0, 1.0, 1.0, 1.0)
     val v = listOf(400.0, 600.0, 800.0, 700.0, 200.0)
     val k = listOf(10.0, 12.0, 11.0, 9.0, 8.0)
     val s = listOf(16.0, 8.0, 8.0, 7.0, 4.0)
 
-    println()
-    println("%3d   %6.3f   %6.3f   %6.3f   %6.3f   %6.3f   %9.3f".format(
+    println("step,q1,q2,q3,q4,q5,f,note")
+    println(FORMAT_STRING.format(
         0,
         1.0,
         1.0,
         1.0,
         1.0,
         1.0,
-        taskFunction(initial, v, k, s)
+        taskFunction(initial, v, k, s),
+        "Начальные значения"
     ))
 
     var step = 1
@@ -24,14 +27,15 @@ fun main(args: Array<String>) {
         onStep = { coords, value, successful -> outputFunction(step++, coords, value, successful) }
     )
 
-    println("%s   %6.3f   %6.3f   %6.3f   %6.3f   %6.3f   %9.3f".format(
-        "res",
+    println(FORMAT_STRING.format(
+        step,
         finalCoords[0],
         finalCoords[1],
         finalCoords[2],
         finalCoords[3],
         finalCoords[4],
-        functionValue
+        functionValue,
+        "Результат"
     ))
 }
 
@@ -54,7 +58,7 @@ fun outputFunction(
     value: Double,
     successful: Boolean
 ) {
-    println("%3d   %6.3f   %6.3f   %6.3f   %6.3f   %6.3f   %9.3f   %s".format(
+    println(FORMAT_STRING.format(
         step,
         coords[0],
         coords[1],
